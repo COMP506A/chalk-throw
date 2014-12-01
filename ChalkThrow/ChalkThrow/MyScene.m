@@ -104,39 +104,45 @@
         CCSprite *bottomStudentLeft = [CCSprite spriteWithSpriteFrameName:@"normal_l.png"];
         bottomStudentLeft.position = [self convertPoint:ccp(95, 155)];
         [bottomSpriteNode addChild:bottomStudentLeft];
+        [bottomStudentLeft setUserData:@"00"];      //1st 0: not being hit, 2nd 0: on the bottom
         [students addObject:bottomStudentLeft];
         
         CCSprite *bottomStudentMiddle = [CCSprite spriteWithSpriteFrameName:@"normal_l.png"];
         bottomStudentMiddle.position = [self convertPoint:ccp(240, 155)];
         [bottomSpriteNode addChild:bottomStudentMiddle];
+        [bottomStudentMiddle setUserData:@"00"];
         [students addObject:bottomStudentMiddle];
         
         CCSprite *bottomStudentRight = [CCSprite spriteWithSpriteFrameName:@"normal_l.png"];
         bottomStudentRight.position = [self convertPoint:ccp(385, 155)];
         [bottomSpriteNode addChild:bottomStudentRight];
+        [bottomStudentRight setUserData:@"00"];
         [students addObject:bottomStudentRight];
 
         CCSprite *topStudentLeft = [CCSprite spriteWithSpriteFrameName:@"normal_s.png"];
         topStudentLeft.position = [self convertPoint:ccp(130, 250)];
         [topSpriteNode addChild:topStudentLeft];
+        [topStudentLeft setUserData:@"01"];         //1st 0: not being hit, 2nd 0: on the top
         [students addObject:topStudentLeft];
         
         CCSprite *topStudentMiddle = [CCSprite spriteWithSpriteFrameName:@"normal_s.png"];
         topStudentMiddle.position = [self convertPoint:ccp(240, 250)];
         [topSpriteNode addChild:topStudentMiddle];
+        [topStudentMiddle setUserData:@"01"];
         [students addObject:topStudentMiddle];
         
         CCSprite *topStudentRight = [CCSprite spriteWithSpriteFrameName:@"normal_s.png"];
         topStudentRight.position = [self convertPoint:ccp(340, 250)];
         [topSpriteNode addChild:topStudentRight];
+        [topStudentRight setUserData:@"01"];
         [students addObject:topStudentRight];
         
-        /*
-        laughAnim = [self animationFromPlist:@"laughAnim" delay:0.1];
-        hitAnim = [self animationFromPlist:@"hitAnim" delay:0.02];
-        [[CCAnimationCache sharedAnimationCache] addAnimation:laughAnim name:@"laughAnim"];
-        [[CCAnimationCache sharedAnimationCache] addAnimation:hitAnim name:@"hitAnim"];
-        */
+        bottomSittingAnim = [self animationFromPlist:@"bottomSittingAnim" delay:0.1];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSittingAnim name:@"bottomSittingAnim"];
+        topSittingAnim = [self animationFromPlist:@"topSittingAnim" delay:0.1];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:topSittingAnim name:@"topSittingAnim"];
+        [self schedule:@selector(tryBlinking:) interval:0.5];
+        
         // Load Chalk
         self.touchEnabled = true;
         _chalks = [[NSMutableArray alloc] init];
@@ -157,7 +163,7 @@
     }
     return self;
 }
-/*
+
 
 - (CCAnimation *)animationFromPlist:(NSString *)animPlist delay:(float)delay {
     
@@ -170,7 +176,7 @@
     return [CCAnimation animationWithFrames:animFrames delay:delay]; // 6
     
 }
-*/
+
 
 /*-(void) registerWithTouchDispatcher
 {
@@ -305,7 +311,8 @@
 }*/
 
 
-- (void) tryPopMoles:(ccTime)dt {
+- (void) tryBlinking:(ccTime)dt {
+    /*
     if (gameOver) return;
     
     [label setString:[NSString stringWithFormat:@"Score: %d", score]];
@@ -323,11 +330,12 @@
         gameOver =true;
         return;
     }
+     */
     
-    for (CCSprite *mole in students) {
+    for (CCSprite *student in students) {
         if (arc4random() % 3 == 0) {
-            if (mole.numberOfRunningActions == 0) {
-                [self popMole:mole];
+            if (student.numberOfRunningActions == 0) {
+                [self blinking:student];
             }
         }
     }
@@ -347,7 +355,19 @@
 }
  
 
-- (void) popMole:(CCSprite *)mole {
+- (void) blinking:(CCSprite *)student {
+    
+    if (student.userData == @"00") {
+        [student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
+        CCAnimate *blink = [CCAnimate actionWithAnimation:bottomSittingAnim restoreOriginalFrame:YES];
+        [student runAction:[CCSequence actions: blink, nil]];
+    }
+    if (student.userData == @"01") {
+        [student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_s.png"]];
+        CCAnimate *blink = [CCAnimate actionWithAnimation:topSittingAnim restoreOriginalFrame:YES];
+        [student runAction:[CCSequence actions: blink, nil]];
+    }
+    
     
     /*
     if (totalSpawns > 50) return;

@@ -144,6 +144,10 @@
 		71BB9ED01A2A3AB300123283 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BB9ECF1A2A3AB300123283 /* AppDelegate.m */; };
 		71BB9ED61A2A3AB300123283 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BB9ED51A2A3AB300123283 /* IntroLayer.m */; };
 		71BB9EE01A2A400200123283 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71BB9EDF1A2A400200123283 /* background.jpg */; };
+		71C525FF1A2C581C006867DD /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71C525FD1A2C581C006867DD /* sprites.plist */; };
+		71C526001A2C581C006867DD /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C525FE1A2C581C006867DD /* sprites.png */; };
+		71C526021A2C59B2006867DD /* bottomSittingAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71C526011A2C59B2006867DD /* bottomSittingAnim.plist */; };
+		71C526041A2C5C4A006867DD /* topSittingAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71C526031A2C5C4A006867DD /* topSittingAnim.plist */; };
 		71DE7E621A2B8D6E004DDCE6 /* foreground.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E5E1A2B8D6E004DDCE6 /* foreground.plist */; };
 		71DE7E631A2B8D6E004DDCE6 /* foreground.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E5F1A2B8D6E004DDCE6 /* foreground.png */; };
 		71DE7E681A2B8D96004DDCE6 /* hitAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E641A2B8D96004DDCE6 /* hitAnim.plist */; };
@@ -152,8 +156,6 @@
 		71DE7E6F1A2B91B3004DDCE6 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E6D1A2B91B3004DDCE6 /* background.png */; };
 		71DE7E721A2B9481004DDCE6 /* tables.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E701A2B9481004DDCE6 /* tables.plist */; };
 		71DE7E731A2B9481004DDCE6 /* tables.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E711A2B9481004DDCE6 /* tables.png */; };
-		71DE7E781A2B993B004DDCE6 /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E761A2B993B004DDCE6 /* sprites.plist */; };
-		71DE7E791A2B993B004DDCE6 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E771A2B993B004DDCE6 /* sprites.png */; };
 		F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD6C1A2C0492006818EB /* chalk.png */; };
 /* End PBXBuildFile section */
 
@@ -442,6 +444,10 @@
 		71BB9ED41A2A3AB300123283 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		71BB9ED51A2A3AB300123283 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		71BB9EDF1A2A400200123283 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		71C525FD1A2C581C006867DD /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprites.plist; sourceTree = "<group>"; };
+		71C525FE1A2C581C006867DD /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
+		71C526011A2C59B2006867DD /* bottomSittingAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bottomSittingAnim.plist; sourceTree = "<group>"; };
+		71C526031A2C5C4A006867DD /* topSittingAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = topSittingAnim.plist; sourceTree = "<group>"; };
 		71DE7E5E1A2B8D6E004DDCE6 /* foreground.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = foreground.plist; sourceTree = "<group>"; };
 		71DE7E5F1A2B8D6E004DDCE6 /* foreground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foreground.png; sourceTree = "<group>"; };
 		71DE7E641A2B8D96004DDCE6 /* hitAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hitAnim.plist; sourceTree = "<group>"; };
@@ -450,8 +456,6 @@
 		71DE7E6D1A2B91B3004DDCE6 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		71DE7E701A2B9481004DDCE6 /* tables.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tables.plist; sourceTree = "<group>"; };
 		71DE7E711A2B9481004DDCE6 /* tables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tables.png; sourceTree = "<group>"; };
-		71DE7E761A2B993B004DDCE6 /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprites.plist; sourceTree = "<group>"; };
-		71DE7E771A2B993B004DDCE6 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
 		F3D2DD6C1A2C0492006818EB /* chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -529,9 +533,9 @@
 		71BB9D3E1A2A3AB100123283 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				71C525FD1A2C581C006867DD /* sprites.plist */,
+				71C525FE1A2C581C006867DD /* sprites.png */,
 				F3D2DD6C1A2C0492006818EB /* chalk.png */,
-				71DE7E761A2B993B004DDCE6 /* sprites.plist */,
-				71DE7E771A2B993B004DDCE6 /* sprites.png */,
 				71DE7E701A2B9481004DDCE6 /* tables.plist */,
 				71DE7E711A2B9481004DDCE6 /* tables.png */,
 				71DE7E6C1A2B91B3004DDCE6 /* background.plist */,
@@ -555,6 +559,8 @@
 				71BB9D511A2A3AB100123283 /* Icon@2x.png */,
 				71BB9D531A2A3AB100123283 /* Info.plist */,
 				71BB9D541A2A3AB100123283 /* iTunesArtwork */,
+				71C526011A2C59B2006867DD /* bottomSittingAnim.plist */,
+				71C526031A2C5C4A006867DD /* topSittingAnim.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -977,9 +983,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C526001A2C581C006867DD /* sprites.png in Resources */,
 				71BB9D501A2A3AB100123283 /* Icon.png in Resources */,
-				71DE7E791A2B993B004DDCE6 /* sprites.png in Resources */,
-				71DE7E781A2B993B004DDCE6 /* sprites.plist in Resources */,
 				71DE7E721A2B9481004DDCE6 /* tables.plist in Resources */,
 				71DE7E681A2B8D96004DDCE6 /* hitAnim.plist in Resources */,
 				718060811A2AE97D00F01EED /* startbgm.png in Resources */,
@@ -987,14 +992,17 @@
 				F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */,
 				71BB9EE01A2A400200123283 /* background.jpg in Resources */,
 				71BB9EAE1A2A3AB300123283 /* ChangeLog in Resources */,
+				71C525FF1A2C581C006867DD /* sprites.plist in Resources */,
 				71BB9D421A2A3AB100123283 /* Default@2x.png in Resources */,
 				71DE7E691A2B8D96004DDCE6 /* laughAnim.plist in Resources */,
+				71C526041A2C5C4A006867DD /* topSittingAnim.plist in Resources */,
 				71BB9D4C1A2A3AB100123283 /* Icon-Small.png in Resources */,
 				71BB9D481A2A3AB100123283 /* Icon-72.png in Resources */,
 				71BB9D401A2A3AB100123283 /* Default.png in Resources */,
 				71BB9D4A1A2A3AB100123283 /* Icon-Small-50.png in Resources */,
 				718060831A2B009100F01EED /* bgm.jpg in Resources */,
 				71DE7E731A2B9481004DDCE6 /* tables.png in Resources */,
+				71C526021A2C59B2006867DD /* bottomSittingAnim.plist in Resources */,
 				71BB9D551A2A3AB100123283 /* iTunesArtwork in Resources */,
 				71DE7E621A2B8D6E004DDCE6 /* foreground.plist in Resources */,
 				71DE7E6E1A2B91B3004DDCE6 /* background.plist in Resources */,

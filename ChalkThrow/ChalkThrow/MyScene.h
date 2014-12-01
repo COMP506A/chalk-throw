@@ -17,8 +17,8 @@
     NSMutableArray *students;
     NSMutableArray *_chalks;
     
-    CCAnimation *laughAnim;
-    CCAnimation *hitAnim;
+    CCAnimation *bottomSittingAnim;
+    CCAnimation *topSittingAnim;
     
     CCLabelTTF *label;
     int score;
