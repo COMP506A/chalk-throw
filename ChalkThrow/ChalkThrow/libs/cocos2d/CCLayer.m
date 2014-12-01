@@ -26,6 +26,7 @@
 
 
 #import <stdarg.h>
+#import <CoreMotion/CoreMotion.h>
 
 #import "Platforms/CCGL.h"
 
@@ -59,6 +60,8 @@
 #endif // __CC_PLATFORM_IOS
 
 @implementation CCLayer
+
+CMMotionManager *_manager;
 
 #pragma mark Layer - Init
 -(id) init
@@ -111,10 +114,14 @@
 	if( enabled != _accelerometerEnabled ) {
 		_accelerometerEnabled = enabled;
 		if( _isRunning ) {
-			if( enabled )
+            if( enabled ) {
 				[[UIAccelerometer sharedAccelerometer] setDelegate:(id<UIAccelerometerDelegate>)self];
-			else
+                //_manager = [[CMMotionManager alloc]init];
+                //[_manager startAccelerometerUpdates];
+            } else {
 				[[UIAccelerometer sharedAccelerometer] setDelegate:nil];
+                //[_manager stopAccelerometerUpdates];
+            }
 		}
 	}
 }
@@ -122,6 +129,7 @@
 -(void) setAccelerometerInterval:(float)interval
 {
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:interval];
+    //_manager.accelerometerUpdateInterval=1.0/60.0;
 }
 
 -(BOOL) isTouchEnabled

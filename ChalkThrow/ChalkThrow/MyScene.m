@@ -16,6 +16,7 @@
 
 // HelloWorldLayer implementation
 @implementation MyScene
+NSMutableArray *_chalks;
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -137,7 +138,11 @@
         [[CCAnimationCache sharedAnimationCache] addAnimation:laughAnim name:@"laughAnim"];
         [[CCAnimationCache sharedAnimationCache] addAnimation:hitAnim name:@"hitAnim"];
         */
-        self.isTouchEnabled = YES;
+        // Load Chalk
+        self.touchEnabled = true;
+        _chalks = [[NSMutableArray alloc] init];
+        
+        //[self schedule:@selector(update:)];
         
         /*
         float margin =10;
@@ -168,14 +173,14 @@
 }
 */
 
--(void) registerWithTouchDispatcher
+/*-(void) registerWithTouchDispatcher
 {
     [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:kCCMenuTouchPriority swallowsTouches:NO];
-}
+}*/
 
--(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+
+/*-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    
     CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
     for (CCSprite *mole in students) {
         if (mole.userData == FALSE) continue;
@@ -192,7 +197,111 @@
         }
     }
     return TRUE;
+}*/
+
+- (void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    // Choose one of the touches to work with
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:[touch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    
+    // Set up initial location of chalk
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *chalk = [CCSprite spriteWithFile:@"chalk.png"
+                                          rect:CGRectMake(0, 0, 96, 48)];
+    chalk.position = ccp(winSize.width/2, 24);
+    
+    // Determine offset of location to chalk
+    int offX = location.x - chalk.position.x;
+    int offY = location.y - chalk.position.y;
+    
+    // Ok to add now - we've double checked position
+    [self addChild:chalk z:10];
+    
+    if (offY < chalk.position.y)
+        return;
+    
+    int offRealX, offRealY;
+    CGPoint realDest;
+    if (offX > 0) {
+        // Determine where we wish to shoot the chalk to
+        int realX = winSize.width + (chalk.contentSize.width/2);
+        offRealX = realX - chalk.position.x;
+        float ratio = (float) offY / (float) offX;
+        int realY = (offRealX * ratio) + chalk.position.y;
+        realDest = ccp(realX, realY);
+    
+        // Determine the length of how far we're shooting
+        offRealY = realY - chalk.position.y;
+    } else {
+        // Determine where we wish to shoot the chalk to
+        int realX = - chalk.contentSize.width/2;
+        offRealX = realX - chalk.position.x;
+        float ratio = (float) offY / (float) offX;
+        int realY = (offRealX * ratio) + chalk.position.y;
+        realDest = ccp(realX, realY);
+        
+        // Determine the length of how far we're shooting
+        offRealY = realY - chalk.position.y;
+    }
+    
+    float length = sqrtf((offRealX * offRealX) + (offRealY * offRealY));
+    float velocity = 480/1; // 480pixels/1sec
+    float realMoveDuration = length/velocity;
+    
+    chalk.tag = 2;
+    [_chalks addObject:chalk];
+    
+    // Move chalk to actual endpoint
+    [chalk runAction:[CCSequence actions:
+                           [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
+                           nil]];
+
 }
+
+/*
+- (void)update:(ccTime)dt {
+    
+    NSMutableArray *chalksToDelete = [[NSMutableArray alloc] init];
+    for (CCSprite *chalk in _chalks) {
+        CGRect chalkRect = CGRectMake(
+                                           chalk.position.x - (chalk.contentSize.width/2),
+                                           chalk.position.y - (chalk.contentSize.height/2),
+                                           chalk.contentSize.width,
+                                           chalk.contentSize.height);
+        
+        NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
+        for (CCSprite *target in _targets) {
+            CGRect targetRect = CGRectMake(
+                                           target.position.x - (target.contentSize.width/2),
+                                           target.position.y - (target.contentSize.height/2),
+                                           target.contentSize.width,
+                                           target.contentSize.height);
+            
+            if (CGRectIntersectsRect(projectileRect, targetRect)) {
+                [targetsToDelete addObject:target];
+            }
+        }
+        
+        for (CCSprite *target in targetsToDelete) {
+            [_targets removeObject:target];
+            [self removeChild:target cleanup:YES];
+        }
+        
+        //因为在遍历_projectiles，不能直接把projectiles移除
+        if (targetsToDelete.count >0) {
+            [projectilesToDelete addObject:projectile];
+        }
+        [targetsToDelete release];
+    }
+    
+    for (CCSprite *chalk in chalksToDelete) {
+        [_chalks removeObject:chalk];
+        [self removeChild:chalk cleanup:YES];
+    }
+    [chalksToDelete release];
+}*/
+
 
 - (void) tryPopMoles:(ccTime)dt {
     if (gameOver) return;
