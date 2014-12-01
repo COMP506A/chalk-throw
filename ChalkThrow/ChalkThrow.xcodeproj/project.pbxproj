@@ -154,7 +154,6 @@
 		71DE7E731A2B9481004DDCE6 /* tables.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E711A2B9481004DDCE6 /* tables.png */; };
 		71DE7E781A2B993B004DDCE6 /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E761A2B993B004DDCE6 /* sprites.plist */; };
 		71DE7E791A2B993B004DDCE6 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E771A2B993B004DDCE6 /* sprites.png */; };
-		F3D2DD6B1A2BFFFF006818EB /* ThrowChalk.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D2DD6A1A2BFFFF006818EB /* ThrowChalk.m */; };
 		F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD6C1A2C0492006818EB /* chalk.png */; };
 /* End PBXBuildFile section */
 
@@ -453,7 +452,6 @@
 		71DE7E711A2B9481004DDCE6 /* tables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tables.png; sourceTree = "<group>"; };
 		71DE7E761A2B993B004DDCE6 /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprites.plist; sourceTree = "<group>"; };
 		71DE7E771A2B993B004DDCE6 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
-		F3D2DD6A1A2BFFFF006818EB /* ThrowChalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThrowChalk.m; sourceTree = "<group>"; };
 		F3D2DD6C1A2C0492006818EB /* chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -515,7 +513,6 @@
 		71BB9D3D1A2A3AB100123283 /* ChalkThrow */ = {
 			isa = PBXGroup;
 			children = (
-				F3D2DD6A1A2BFFFF006818EB /* ThrowChalk.m */,
 				71BB9ECE1A2A3AB300123283 /* AppDelegate.h */,
 				71BB9ECF1A2A3AB300123283 /* AppDelegate.m */,
 				71BB9ED41A2A3AB300123283 /* IntroLayer.h */,
@@ -1057,7 +1054,6 @@
 				71BB9EBC1A2A3AB300123283 /* plane.c in Sources */,
 				71BB9E681A2A3AB200123283 /* CCProfiling.m in Sources */,
 				71BB9DFF1A2A3AB200123283 /* CCShaderCache.m in Sources */,
-				F3D2DD6B1A2BFFFF006818EB /* ThrowChalk.m in Sources */,
 				71BB9E051A2A3AB200123283 /* CCSprite.m in Sources */,
 				71BB9DAC1A2A3AB200123283 /* CCGrabber.m in Sources */,
 				71BB9EB61A2A3AB300123283 /* mat3.c in Sources */,

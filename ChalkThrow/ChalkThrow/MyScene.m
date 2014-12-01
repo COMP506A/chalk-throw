@@ -16,7 +16,6 @@
 
 // HelloWorldLayer implementation
 @implementation MyScene
-NSMutableArray *_chalks;
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -252,9 +251,12 @@ NSMutableArray *_chalks;
     chalk.tag = 2;
     [_chalks addObject:chalk];
     
+    float realScale = 1 - length/640*0.6;
     // Move chalk to actual endpoint
-    [chalk runAction:[CCSequence actions:
+    [chalk runAction:[CCSpawn actions:
                            [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
+                           [CCScaleBy actionWithDuration:realMoveDuration scale:realScale],
+                           [CCRotateBy actionWithDuration:realMoveDuration angle:720],
                            nil]];
 
 }

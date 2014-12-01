@@ -15,6 +15,7 @@
 @interface MyScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
     NSMutableArray *students;
+    NSMutableArray *_chalks;
     
     CCAnimation *laughAnim;
     CCAnimation *hitAnim;
