@@ -104,8 +104,8 @@
         CCSprite *bottomStudentLeft = [CCSprite spriteWithSpriteFrameName:@"normal_l.png"];
         bottomStudentLeft.position = [self convertPoint:ccp(95, 155)];
         [bottomSpriteNode addChild:bottomStudentLeft];
-        [bottomStudentLeft setUserData:@"00"];      //1st 0: not being hit, 2nd 0: on the bottom
-        [students addObject:bottomStudentLeft];
+        [bottomStudentLeft setUserData:@"00"];      //1st position: 0-sit, 1-sleep
+        [students addObject:bottomStudentLeft];     //2nd position: 0-bottom, 1-top
         
         CCSprite *bottomStudentMiddle = [CCSprite spriteWithSpriteFrameName:@"normal_l.png"];
         bottomStudentMiddle.position = [self convertPoint:ccp(240, 155)];
@@ -122,7 +122,7 @@
         CCSprite *topStudentLeft = [CCSprite spriteWithSpriteFrameName:@"normal_s.png"];
         topStudentLeft.position = [self convertPoint:ccp(130, 250)];
         [topSpriteNode addChild:topStudentLeft];
-        [topStudentLeft setUserData:@"01"];         //1st 0: not being hit, 2nd 0: on the top
+        [topStudentLeft setUserData:@"01"];
         [students addObject:topStudentLeft];
         
         CCSprite *topStudentMiddle = [CCSprite spriteWithSpriteFrameName:@"normal_s.png"];
@@ -137,10 +137,17 @@
         [topStudentRight setUserData:@"01"];
         [students addObject:topStudentRight];
         
+        
+        // load animations
         bottomSittingAnim = [self animationFromPlist:@"bottomSittingAnim" delay:0.1];
         [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSittingAnim name:@"bottomSittingAnim"];
         topSittingAnim = [self animationFromPlist:@"topSittingAnim" delay:0.1];
         [[CCAnimationCache sharedAnimationCache] addAnimation:topSittingAnim name:@"topSittingAnim"];
+        bottomSleepAnim = [self animationFromPlist:@"bottomSleepAnim" delay:0.3];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSleepAnim name:@"bottomSleepAnim"];
+        topSleepAnim = [self animationFromPlist:@"topSleepAnim" delay:0.3];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:topSleepAnim name:@"topSleepAnim"];
+        
         [self schedule:@selector(tryBlinking:) interval:0.5];
         
         // Load Chalk
@@ -344,14 +351,24 @@
 
 
 
-- (void)setTappable:(id)sender {
-    CCSprite *mole = (CCSprite *)sender;
-    [mole setUserData:TRUE];
+- (void)setSleep:(id)sender {
+    CCSprite *student = (CCSprite *)sender;
+    if (student.userData == @"00") {        //1st position: 0-sit, 1-sleep
+        [student setUserData:@"10"];        //2nd position: 0-bottom, 1-top
+    }
+    if (student.userData == @"01") {
+        [student setUserData:@"11"];
+    }
 }
 
-- (void)unsetTappable:(id)sender {
-    CCSprite *mole = (CCSprite *)sender;
-    [mole setUserData:FALSE];
+- (void)unsetSleep:(id)sender {
+    CCSprite *student = (CCSprite *)sender;
+    if (student.userData == @"10") {        //1st position: 0-sit to hit, 1-sleep
+        [student setUserData:@"00"];        //2nd position: 0-bottom, 1-top
+    }
+    if (student.userData == @"11") {
+        [student setUserData:@"01"];
+    }
 }
  
 
@@ -359,13 +376,21 @@
     
     if (student.userData == @"00") {
         [student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
+        CCCallFunc *setSleep = [CCCallFuncN actionWithTarget:self selector:@selector(setSleep:)]; //set tappable
         CCAnimate *blink = [CCAnimate actionWithAnimation:bottomSittingAnim restoreOriginalFrame:YES];
-        [student runAction:[CCSequence actions: blink, nil]];
+        CCAnimate *sleep = [CCAnimate actionWithAnimation:bottomSleepAnim restoreOriginalFrame:YES];
+        CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset tappable
+
+        [student runAction:[CCSequence actions: blink, setSleep, sleep, unsetSleep, nil]];
     }
     if (student.userData == @"01") {
         [student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_s.png"]];
+        CCCallFunc *setSleep = [CCCallFuncN actionWithTarget:self selector:@selector(setSleep:)]; //set tappable
         CCAnimate *blink = [CCAnimate actionWithAnimation:topSittingAnim restoreOriginalFrame:YES];
-        [student runAction:[CCSequence actions: blink, nil]];
+        CCAnimate *sleep = [CCAnimate actionWithAnimation:topSleepAnim restoreOriginalFrame:YES];
+        CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset tappable
+        
+        [student runAction:[CCSequence actions: blink, setSleep, sleep, unsetSleep, nil]];
     }
     
     

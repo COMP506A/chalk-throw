@@ -19,6 +19,8 @@
     
     CCAnimation *bottomSittingAnim;
     CCAnimation *topSittingAnim;
+    CCAnimation *bottomSleepAnim;
+    CCAnimation *topSleepAnim;
     
     CCLabelTTF *label;
     int score;
