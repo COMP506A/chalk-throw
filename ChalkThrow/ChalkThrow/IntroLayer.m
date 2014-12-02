@@ -9,15 +9,15 @@
 
 // Import the interfaces
 #import "IntroLayer.h"
-#import "MyScene.h"
+#import "StartLayer.h"
 
 
 #pragma mark - IntroLayer
 
-// MyScene implementation
+// Intorlayer implementation
 @implementation IntroLayer
 
-// Helper class method that creates a Scene with the MyScene as the only child.
+// Helper class method that creates a Scene with the GameLayer as the only child.
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -61,6 +61,6 @@
 -(void) onEnter
 {
 	[super onEnter];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MyScene scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[StartLayer scene] ]];
 }
 @end

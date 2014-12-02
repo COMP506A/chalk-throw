@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B452B9C1A2DA1260061BBAD /* StartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B452B9B1A2DA1260061BBAD /* StartLayer.m */; };
 		7157DD381A2D993B000AE5F4 /* background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7157DD361A2D993B000AE5F4 /* background.plist */; };
 		7157DD391A2D993B000AE5F4 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7157DD371A2D993B000AE5F4 /* background.png */; };
 		7157DD3C1A2D9995000AE5F4 /* startscene.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7157DD3A1A2D9995000AE5F4 /* startscene.plist */; };
@@ -15,7 +16,7 @@
 		717E82E11A2C61D500B40191 /* topSleepAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 717E82E01A2C61D500B40191 /* topSleepAnim.plist */; };
 		718060811A2AE97D00F01EED /* startbgm.png in Resources */ = {isa = PBXBuildFile; fileRef = 718060801A2AE97D00F01EED /* startbgm.png */; };
 		718060831A2B009100F01EED /* bgm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 718060821A2B009100F01EED /* bgm.jpg */; };
-		718C8C931A2B5CCD00F37CE0 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 718C8C921A2B5CCD00F37CE0 /* MyScene.m */; };
+		718C8C931A2B5CCD00F37CE0 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 718C8C921A2B5CCD00F37CE0 /* GameLayer.m */; };
 		71BB9D2A1A2A3AB100123283 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71BB9D291A2A3AB100123283 /* QuartzCore.framework */; };
 		71BB9D2C1A2A3AB100123283 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71BB9D2B1A2A3AB100123283 /* OpenGLES.framework */; };
 		71BB9D2E1A2A3AB100123283 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71BB9D2D1A2A3AB100123283 /* OpenAL.framework */; };
@@ -164,6 +165,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B452B9A1A2DA1260061BBAD /* StartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartLayer.h; sourceTree = "<group>"; };
+		1B452B9B1A2DA1260061BBAD /* StartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartLayer.m; sourceTree = "<group>"; };
 		7157DD361A2D993B000AE5F4 /* background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background.plist; sourceTree = "<group>"; };
 		7157DD371A2D993B000AE5F4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7157DD3A1A2D9995000AE5F4 /* startscene.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = startscene.plist; sourceTree = "<group>"; };
@@ -172,8 +175,8 @@
 		717E82E01A2C61D500B40191 /* topSleepAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = topSleepAnim.plist; sourceTree = "<group>"; };
 		718060801A2AE97D00F01EED /* startbgm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startbgm.png; sourceTree = "<group>"; };
 		718060821A2B009100F01EED /* bgm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgm.jpg; sourceTree = "<group>"; };
-		718C8C911A2B5CCD00F37CE0 /* MyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
-		718C8C921A2B5CCD00F37CE0 /* MyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		718C8C911A2B5CCD00F37CE0 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
+		718C8C921A2B5CCD00F37CE0 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		71BB9D261A2A3AB100123283 /* ChalkThrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChalkThrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BB9D291A2A3AB100123283 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		71BB9D2B1A2A3AB100123283 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -529,8 +532,10 @@
 				71BB9ECF1A2A3AB300123283 /* AppDelegate.m */,
 				71BB9ED41A2A3AB300123283 /* IntroLayer.h */,
 				71BB9ED51A2A3AB300123283 /* IntroLayer.m */,
-				718C8C911A2B5CCD00F37CE0 /* MyScene.h */,
-				718C8C921A2B5CCD00F37CE0 /* MyScene.m */,
+				1B452B9A1A2DA1260061BBAD /* StartLayer.h */,
+				1B452B9B1A2DA1260061BBAD /* StartLayer.m */,
+				718C8C911A2B5CCD00F37CE0 /* GameLayer.h */,
+				718C8C921A2B5CCD00F37CE0 /* GameLayer.m */,
 				71BB9D3E1A2A3AB100123283 /* Resources */,
 				71BB9D561A2A3AB100123283 /* libs */,
 				71BB9ECA1A2A3AB300123283 /* Supporting Files */,
@@ -1067,6 +1072,7 @@
 				71BB9DD41A2A3AB200123283 /* CCParticleExamples.m in Sources */,
 				71BB9DD11A2A3AB200123283 /* CCParticleBatchNode.m in Sources */,
 				71BB9E141A2A3AB200123283 /* CCTextureAtlas.m in Sources */,
+				1B452B9C1A2DA1260061BBAD /* StartLayer.m in Sources */,
 				71BB9EC21A2A3AB300123283 /* utility.c in Sources */,
 				71BB9E6E1A2A3AB200123283 /* CCVertex.m in Sources */,
 				71BB9E741A2A3AB200123283 /* NSThread+performBlock.m in Sources */,
@@ -1089,7 +1095,7 @@
 				71BB9D661A2A3AB100123283 /* CCActionGrid.m in Sources */,
 				71BB9DAF1A2A3AB200123283 /* CCGrid.m in Sources */,
 				71BB9EBE1A2A3AB300123283 /* quaternion.c in Sources */,
-				718C8C931A2B5CCD00F37CE0 /* MyScene.m in Sources */,
+				718C8C931A2B5CCD00F37CE0 /* GameLayer.m in Sources */,
 				71BB9E0B1A2A3AB200123283 /* CCSpriteFrame.m in Sources */,
 				71BB9D781A2A3AB100123283 /* CCActionProgressTimer.m in Sources */,
 				71BB9D5A1A2A3AB100123283 /* CCAction.m in Sources */,

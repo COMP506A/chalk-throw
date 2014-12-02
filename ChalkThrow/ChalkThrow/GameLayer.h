@@ -1,5 +1,5 @@
 //
-//  MyScene.h
+//  GameLayer.h
 //  ChalkThrow
 //
 //  Created by Stella on 14/11/30.
@@ -12,7 +12,7 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface MyScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
+@interface GameLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
     NSMutableArray *students;
     NSMutableArray *_chalks;
@@ -28,7 +28,7 @@
     BOOL gameOver;
 }
 
-// returns a CCScene that contains the MyScene as the only child
+// returns a CCScene that contains the GameLayer as the only child
 +(CCScene *) scene;
 
 @end

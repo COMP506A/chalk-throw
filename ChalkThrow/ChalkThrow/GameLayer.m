@@ -1,5 +1,5 @@
 //
-//  MyScene.m
+//  GameLayer.m
 //  ChalkThrow
 //
 //  Created by Stella on 14/11/30.
@@ -7,7 +7,7 @@
 //
 
 // Import the interfaces
-#import "MyScene.h"
+#import "GameLayer.h"
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
@@ -15,7 +15,7 @@
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
-@implementation MyScene
+@implementation GameLayer
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -24,7 +24,7 @@
     CCScene *scene = [CCScene node];
     
     // 'layer' is an autorelease object.
-    MyScene *layer = [MyScene node];
+    GameLayer *layer = [GameLayer node];
     
     // add layer as a child to scene
     [scene addChild: layer];
@@ -536,6 +536,20 @@ CGPoint location;
     students = nil;
     [_chalks release];
     _chalks = nil;
+    
+    
+    [bottomSittingAnim release];
+    bottomSittingAnim = nil;
+    [topSittingAnim release];
+    topSittingAnim = nil;
+    [bottomSleepAnim release];
+    bottomSittingAnim = nil;
+    [topSleepAnim release];
+    topSittingAnim = nil;
+    
+    [label release];
+    label = nil;
+    
 }
 
 #pragma mark GameKit delegate
