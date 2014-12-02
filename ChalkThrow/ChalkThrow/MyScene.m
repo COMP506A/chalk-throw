@@ -153,6 +153,7 @@
         // Load Chalk
         self.touchEnabled = true;
         _chalks = [[NSMutableArray alloc] init];
+        [self schedule:@selector(update:)];
         
         //[self schedule:@selector(update:)];
         
@@ -211,10 +212,19 @@
     return TRUE;
 }*/
 
+- (void) spriteMoveFinished: (id)sender {
+    CCSprite *sprite = (CCSprite *)sender;
+    if(sprite.tag ==2) {
+        [_chalks removeObject:sprite];
+    }
+    [self removeChild:sprite cleanup:YES];
+}
+
+CGPoint location;
 - (void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     // Choose one of the touches to work with
     UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInView:[touch view]];
+    location = [touch locationInView:[touch view]];
     location = [[CCDirector sharedDirector] convertToGL:location];
     
     // Set up initial location of chalk
@@ -224,7 +234,7 @@
     chalk.position = ccp(winSize.width/2, 24);
     
     // Determine offset of location to chalk
-    int offX = location.x - chalk.position.x;
+    /*int offX = location.x - chalk.position.x;
     int offY = location.y - chalk.position.y;
     
     // Ok to add now - we've double checked position
@@ -266,15 +276,62 @@
     
     float realScale = 1 - length/640*0.6;
     // Move chalk to actual endpoint
+    CCMoveTo* moveTo = [CCMoveTo actionWithDuration:realMoveDuration position:realDest];
     [chalk runAction:[CCSpawn actions:
                            [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
                            [CCScaleBy actionWithDuration:realMoveDuration scale:realScale],
                            [CCRotateBy actionWithDuration:realMoveDuration angle:720],
+                           [CCEaseOut actionWithAction:moveTo rate:0.8],
+                           nil]];*/
+    if (location.y < 500) {
+        int offX = location.x - chalk.position.x;
+        int offY = location.y - chalk.position.y;
+        
+        [self addChild:chalk z:10];
+        
+        if (offY < 0)
+            return;
+        
+        float length = sqrtf((offX * offX) + (offY * offY));
+        float velocity = 480/1;
+        float moveDuration = length / velocity;
+        
+        
+        chalk.tag = 2;
+        [_chalks addObject:chalk];
+        
+        float scale = 1 - length/640*0.6;
+        
+        CCMoveTo* moveTo = [CCMoveTo actionWithDuration:moveDuration position:location];
+        [chalk runAction: [CCSpawn actions:
+                           [CCMoveTo actionWithDuration:moveDuration position:location],
+                           [CCScaleBy actionWithDuration:moveDuration scale:scale],
+                           [CCRotateBy actionWithDuration:moveDuration angle:720],
+                           [CCEaseOut actionWithAction:moveTo rate:1],
                            nil]];
 
+    } else {
+        float sx = chalk.position.x;
+        float sy = chalk.position.y;
+        float ex = location.x;
+        float ey = location.y;
+        
+        [self addChild:chalk z:10];
+        chalk.tag = 2;
+        [_chalks addObject:chalk];
+
+        //int h = [chalk contentSize].height * 0.5;
+        ccBezierConfig bezier; // 创建贝塞尔曲线
+        bezier.controlPoint_1 = ccp(sx + 50, sy + 100); // 起始点
+        bezier.controlPoint_2 = ccp(ex + 100, ey + 300); //控制点
+        bezier.endPosition = ccp(location.x, location.y); // 结束位置
+        CCBezierTo *actionMove = [CCBezierTo actionWithDuration:1 bezier:bezier];
+        [chalk runAction:actionMove];
+    }
+    
+    //[self delete:chalk];
 }
 
-/*
 - (void)update:(ccTime)dt {
     
     NSMutableArray *chalksToDelete = [[NSMutableArray alloc] init];
@@ -285,6 +342,41 @@
                                            chalk.contentSize.width,
                                            chalk.contentSize.height);
         
+        //NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
+        for (CCSprite *target in students) {
+            CGRect targetRect = CGRectMake(
+                                           target.position.x - (target.contentSize.width/2),
+                                           target.position.y,
+                                           target.contentSize.width,
+                                           target.contentSize.height/2);
+            /*if (CGRectIntersectsRect(chalkRect, targetRect)) {
+                [chalksToDelete addObject:chalk];
+            }*/
+            CCSprite *markTarget = nil;
+            CGRect markTargetRect;
+            if (location.x > (target.position.x - (target.contentSize.width/2)) &&
+                location.y > (target.position.y - (target.contentSize.height/2)) &&
+                location.x < (target.position.x - (target.contentSize.width/2) + target.contentSize.width) &&
+                location.y < (target.position.y - (target.contentSize.height/2) + target.contentSize.height)){
+                markTarget = target;
+                markTargetRect = targetRect;
+            }
+            
+            if (markTarget) {
+                if (CGRectIntersectsRect(chalkRect, targetRect)) {
+                    [chalksToDelete addObject:chalk];
+                }
+            }
+        }
+    }
+        
+    for (CCSprite *chalk in chalksToDelete) {
+        [_chalks removeObject:chalk];
+        [self removeChild:chalk cleanup:YES];
+    }
+    [chalksToDelete release];
+        
+        /*
         NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
         for (CCSprite *target in _targets) {
             CGRect targetRect = CGRectMake(
@@ -314,8 +406,8 @@
         [_chalks removeObject:chalk];
         [self removeChild:chalk cleanup:YES];
     }
-    [chalksToDelete release];
-}*/
+    [chalksToDelete release];*/
+}
 
 
 - (void) tryBlinking:(ccTime)dt {
@@ -442,6 +534,8 @@
     [super dealloc];
     [students release];
     students = nil;
+    [_chalks release];
+    _chalks = nil;
 }
 
 #pragma mark GameKit delegate
