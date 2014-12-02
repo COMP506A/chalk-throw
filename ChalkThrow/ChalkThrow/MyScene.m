@@ -41,10 +41,10 @@
     if( (self=[super init]) ) {
         
         // Determine names of sprite sheets and plists to load
-        NSString *bgSheet =@"background.png";
-        NSString *bgPlist =@"background.plist";
-        NSString *sSheet =@"sprites.png";
-        NSString *sPlist =@"sprites.plist";
+        NSString *bgSheet = @"background.png";
+        NSString *bgPlist = @"background.plist";
+        NSString *sSheet = @"sprites.png";
+        NSString *sPlist = @"sprites.plist";
         NSString *tbSheet = @"tables.png";
         NSString *tbPlist = @"tables.plist";
         
@@ -54,7 +54,7 @@
         
         // Add background
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        CCSprite *bgd = [CCSprite spriteWithSpriteFrameName:@"background_rmTables.png"];
+        CCSprite *bgd = [CCSprite spriteWithSpriteFrameName:@"background_rmTables.jpg"];
         bgd.position = ccp(winSize.width/2, winSize.height/2);
         [self addChild:bgd z:-2];
         

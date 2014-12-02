@@ -4,14 +4,14 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>background_rmTables.png</key>
+            <key>background_rmTables.jpg</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{1024,768}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{1024,768}}</string>
                 <key>sourceSize</key>
@@ -25,9 +25,9 @@
             <key>realTextureFileName</key>
             <string>background.png</string>
             <key>size</key>
-            <string>{772,1028}</string>
+            <string>{1028,772}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9d16ea5569a8a8b28635ac634515a2dc:2b445bc71f52c89031a0f4cd153c52b4:0efa5fec0be417390841f237bfdb917e$</string>
+            <string>$TexturePacker:SmartUpdate:dd994e0f263580a484797935772439c3:09d3467d3d202250dde6b9652655783f:0efa5fec0be417390841f237bfdb917e$</string>
             <key>textureFileName</key>
             <string>background.png</string>
         </dict>
