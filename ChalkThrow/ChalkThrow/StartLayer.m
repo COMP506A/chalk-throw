@@ -49,13 +49,30 @@
         [self addChild:hardModeNode z:1];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:startPlist];
         
+        CCMenuItem *normalModeMenuItem = [CCMenuItemImage
+                                    itemFromNormalImage:@"normalmode.jpg" selectedImage:@"normalmode_click.jpg"
+                                    target:self selector:@selector(normalModeTapped:)];
+        normalModeMenuItem.position = [self convertPoint:ccp(355, 195)];
+        CCMenu *normalModeMenu = [CCMenu menuWithItems:normalModeMenuItem, nil];
+        normalModeMenu.position = CGPointZero;
+        [self addChild:normalModeMenu];
+        
+        CCMenuItem *hardModeMenuItem = [CCMenuItemImage
+                                          itemFromNormalImage:@"hardmode.jpg" selectedImage:@"hardmode_click.jpg"
+                                          target:self selector:@selector(hardModeTapped:)];
+        hardModeMenuItem.position = [self convertPoint:ccp(355, 85)];
+        CCMenu *hardModeMenu = [CCMenu menuWithItems:hardModeMenuItem, nil];
+        hardModeMenu.position = CGPointZero;
+        [self addChild:hardModeMenu];
+        
+/*
         CCSprite *normalMode = [CCSprite spriteWithSpriteFrameName:@"normalmode.jpg"];
         normalMode.position = [self convertPoint:ccp(355, 195)];
         [normalModeNode addChild:normalMode];
         CCSprite *hardMode = [CCSprite spriteWithSpriteFrameName:@"hardmode.jpg"];
         hardMode.position = [self convertPoint:ccp(355, 85)];
         [hardModeNode addChild:hardMode];
-        
+*/
         
     }
     
@@ -68,6 +85,14 @@
     } else {
         return point;
     }
+}
+
+- (void)normalModeTapped:(id)sender {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] ]];
+}
+
+- (void)hardModeTapped:(id)sender {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] ]];
 }
 
 -(void) onEnter

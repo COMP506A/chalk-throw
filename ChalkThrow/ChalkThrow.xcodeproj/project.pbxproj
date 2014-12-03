@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1B452B9C1A2DA1260061BBAD /* StartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B452B9B1A2DA1260061BBAD /* StartLayer.m */; };
+		1BC4D14F1A2EBD18003417B7 /* hardmode_click.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BC4D14B1A2EBD18003417B7 /* hardmode_click.jpg */; };
+		1BC4D1501A2EBD18003417B7 /* hardmode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BC4D14C1A2EBD18003417B7 /* hardmode.jpg */; };
+		1BC4D1511A2EBD18003417B7 /* normalmode_click.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BC4D14D1A2EBD18003417B7 /* normalmode_click.jpg */; };
+		1BC4D1521A2EBD18003417B7 /* normalmode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BC4D14E1A2EBD18003417B7 /* normalmode.jpg */; };
 		7157DD381A2D993B000AE5F4 /* background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7157DD361A2D993B000AE5F4 /* background.plist */; };
 		7157DD391A2D993B000AE5F4 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7157DD371A2D993B000AE5F4 /* background.png */; };
 		7157DD3C1A2D9995000AE5F4 /* startscene.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7157DD3A1A2D9995000AE5F4 /* startscene.plist */; };
@@ -167,6 +171,10 @@
 /* Begin PBXFileReference section */
 		1B452B9A1A2DA1260061BBAD /* StartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartLayer.h; sourceTree = "<group>"; };
 		1B452B9B1A2DA1260061BBAD /* StartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartLayer.m; sourceTree = "<group>"; };
+		1BC4D14B1A2EBD18003417B7 /* hardmode_click.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hardmode_click.jpg; sourceTree = "<group>"; };
+		1BC4D14C1A2EBD18003417B7 /* hardmode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hardmode.jpg; sourceTree = "<group>"; };
+		1BC4D14D1A2EBD18003417B7 /* normalmode_click.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = normalmode_click.jpg; sourceTree = "<group>"; };
+		1BC4D14E1A2EBD18003417B7 /* normalmode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = normalmode.jpg; sourceTree = "<group>"; };
 		7157DD361A2D993B000AE5F4 /* background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background.plist; sourceTree = "<group>"; };
 		7157DD371A2D993B000AE5F4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7157DD3A1A2D9995000AE5F4 /* startscene.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = startscene.plist; sourceTree = "<group>"; };
@@ -546,6 +554,10 @@
 		71BB9D3E1A2A3AB100123283 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BC4D14B1A2EBD18003417B7 /* hardmode_click.jpg */,
+				1BC4D14C1A2EBD18003417B7 /* hardmode.jpg */,
+				1BC4D14D1A2EBD18003417B7 /* normalmode_click.jpg */,
+				1BC4D14E1A2EBD18003417B7 /* normalmode.jpg */,
 				7157DD3A1A2D9995000AE5F4 /* startscene.plist */,
 				7157DD3B1A2D9995000AE5F4 /* startscene.png */,
 				71C525FD1A2C581C006867DD /* sprites.plist */,
@@ -1001,6 +1013,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				71C526001A2C581C006867DD /* sprites.png in Resources */,
+				1BC4D1501A2EBD18003417B7 /* hardmode.jpg in Resources */,
+				1BC4D14F1A2EBD18003417B7 /* hardmode_click.jpg in Resources */,
 				7157DD391A2D993B000AE5F4 /* background.png in Resources */,
 				71BB9D501A2A3AB100123283 /* Icon.png in Resources */,
 				71DE7E721A2B9481004DDCE6 /* tables.plist in Resources */,
@@ -1008,6 +1022,8 @@
 				718060811A2AE97D00F01EED /* startbgm.png in Resources */,
 				717E82E11A2C61D500B40191 /* topSleepAnim.plist in Resources */,
 				71DE7E631A2B8D6E004DDCE6 /* foreground.png in Resources */,
+				1BC4D1511A2EBD18003417B7 /* normalmode_click.jpg in Resources */,
+				1BC4D1521A2EBD18003417B7 /* normalmode.jpg in Resources */,
 				F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */,
 				71BB9EE01A2A400200123283 /* background.jpg in Resources */,
 				71BB9EAE1A2A3AB300123283 /* ChangeLog in Resources */,
