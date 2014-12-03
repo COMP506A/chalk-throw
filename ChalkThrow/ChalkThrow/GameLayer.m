@@ -155,6 +155,13 @@
         _chalks = [[NSMutableArray alloc] init];
         [self schedule:@selector(update:)];
         
+        //Add score counter
+        score = 0;
+        scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana" fontSize:24];
+        scoreLabel.color = ccBLACK;
+        scoreLabel.position = CGPointMake(winSize.width - 60, 30);
+        [self addChild:scoreLabel z:11];
+        
         //[self schedule:@selector(update:)];
         
         /*
@@ -341,6 +348,7 @@ CGPoint location;
                                            chalk.position.y - (chalk.contentSize.height/2),
                                            chalk.contentSize.width,
                                            chalk.contentSize.height);
+        CGRect destRect = CGRectMake(location.x - 5, location.y - 5, 10, 10);
         
         //NSMutableArray *targetsToDelete = [[NSMutableArray alloc] init];
         for (CCSprite *target in students) {
@@ -360,11 +368,21 @@ CGPoint location;
                 location.y < (target.position.y - (target.contentSize.height/2) + target.contentSize.height)){
                 markTarget = target;
                 markTargetRect = targetRect;
+                //Do not change score label here, for it may change not once
+                //scoreLabel = [CCLabelTTF labelWithString:scoreStr fontName:@"Verdana" fontSize:24];
+            } else {
+                if (CGRectIntersectsRect(chalkRect, destRect)) {
+                    [chalksToDelete addObject:chalk];
+                }
             }
             
             if (markTarget) {
                 if (CGRectIntersectsRect(chalkRect, targetRect)) {
                     [chalksToDelete addObject:chalk];
+                    //hit a target, score + 10
+                    score = score + 10;
+                    NSString *scoreStr = [NSString stringWithFormat:@"Score: %i", score];
+                    scoreLabel.string = scoreStr;
                 }
             }
         }
@@ -547,8 +565,8 @@ CGPoint location;
     [topSleepAnim release];
     topSittingAnim = nil;
     
-    [label release];
-    label = nil;
+    [scoreLabel release];
+    scoreLabel = nil;
     
 }
 

@@ -22,7 +22,7 @@
     CCAnimation *bottomSleepAnim;
     CCAnimation *topSleepAnim;
     
-    CCLabelTTF *label;
+    CCLabelTTF *scoreLabel;
     int score;
     int totalSpawns;
     BOOL gameOver;
