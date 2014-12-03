@@ -4,6 +4,58 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>hardmode.jpg</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1028,408},{286,89}}</string>
+                <key>offset</key>
+                <string>{-45,-8}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{37,44},{286,89}}</string>
+                <key>sourceSize</key>
+                <string>{450,161}</string>
+            </dict>
+            <key>hardmode_click.jpg</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1119,408},{286,89}}</string>
+                <key>offset</key>
+                <string>{-45,-8}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{37,44},{286,89}}</string>
+                <key>sourceSize</key>
+                <string>{450,161}</string>
+            </dict>
+            <key>normalmode.jpg</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1028,2},{404,91}}</string>
+                <key>offset</key>
+                <string>{0,-7}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{23,42},{404,91}}</string>
+                <key>sourceSize</key>
+                <string>{450,161}</string>
+            </dict>
+            <key>normalmode_click.jpg</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1121,2},{404,91}}</string>
+                <key>offset</key>
+                <string>{0,-7}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{23,42},{404,91}}</string>
+                <key>sourceSize</key>
+                <string>{450,161}</string>
+            </dict>
             <key>startbackground.jpg</key>
             <dict>
                 <key>frame</key>
@@ -25,9 +77,9 @@
             <key>realTextureFileName</key>
             <string>startscene.png</string>
             <key>size</key>
-            <string>{1028,772}</string>
+            <string>{1214,772}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:90c413c1b16fea93d383f2feeb434c9d:d80b300f5974ab9bb6864e948cd55781:dad6dcbf717a5681af4ced4b8417ff90$</string>
+            <string>$TexturePacker:SmartUpdate:7cd1b3c54c8f54363185bb0746a2088d:9f7c7bb599e43287bdcbb7e19d6ea8f5:dad6dcbf717a5681af4ced4b8417ff90$</string>
             <key>textureFileName</key>
             <string>startscene.png</string>
         </dict>
