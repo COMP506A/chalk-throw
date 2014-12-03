@@ -147,6 +147,10 @@
         [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSleepAnim name:@"bottomSleepAnim"];
         topSleepAnim = [self animationFromPlist:@"topSleepAnim" delay:0.3];
         [[CCAnimationCache sharedAnimationCache] addAnimation:topSleepAnim name:@"topSleepAnim"];
+        bottomHitAnim = [self animationFromPlist:@"bottomHitAnim" delay:2.0];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomHitAnim name:@"bottomHitAnim"];
+        topHitAnim = [self animationFromPlist:@"topHitAnim" delay:2.0];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:topHitAnim name:@"topHitAnim"];
         
         [self schedule:@selector(tryBlinking:) interval:0.5];
         
@@ -360,14 +364,20 @@ CGPoint location;
             /*if (CGRectIntersectsRect(chalkRect, targetRect)) {
                 [chalksToDelete addObject:chalk];
             }*/
-            CCSprite *markTarget = nil;
+            CCSprite *markTopTarget = nil;
+            CCSprite *markBottomTarget = nil;
             CGRect markTargetRect;
             if (location.x > (target.position.x - (target.contentSize.width/2)) &&
                 location.y > (target.position.y - (target.contentSize.height/2)) &&
                 location.x < (target.position.x - (target.contentSize.width/2) + target.contentSize.width) &&
                 location.y < (target.position.y - (target.contentSize.height/2) + target.contentSize.height)){
-                markTarget = target;
-                markTargetRect = targetRect;
+                if (target.position.y > 500) {
+                    markTopTarget = target;
+                    markTargetRect = targetRect;
+                } else {
+                    markBottomTarget = target;
+                    markTargetRect = targetRect;
+                }
                 //Do not change score label here, for it may change not once
                 //scoreLabel = [CCLabelTTF labelWithString:scoreStr fontName:@"Verdana" fontSize:24];
             } else {
@@ -376,13 +386,31 @@ CGPoint location;
                 }
             }
             
-            if (markTarget) {
+            if (markTopTarget || markBottomTarget) {
                 if (CGRectIntersectsRect(chalkRect, targetRect)) {
                     [chalksToDelete addObject:chalk];
                     //hit a target, score + 10
                     score = score + 10;
                     NSString *scoreStr = [NSString stringWithFormat:@"Score: %i", score];
                     scoreLabel.string = scoreStr;
+                    //Change the state
+                    [self unschedule:@selector(tryBlinking:)];
+                    if(markTopTarget) {
+                        //[markTopTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"hit_s.png"]];
+                        CCAnimate *hit = [CCAnimate actionWithAnimation:topHitAnim restoreOriginalFrame:YES];
+                        CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset
+                        //CCAnimate *blink = [CCAnimate actionWithAnimation:topSittingAnim restoreOriginalFrame:YES];
+                        [markTopTarget runAction:[CCSequence actions: hit, unsetSleep, nil]];
+                    } else {
+                        //[markBottomTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"hit_l.png"]];
+                        CCAnimate *hit = [CCAnimate actionWithAnimation:bottomHitAnim restoreOriginalFrame:YES];
+                        CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset
+                        //CCAnimate *blink = [CCAnimate actionWithAnimation:bottomSittingAnim restoreOriginalFrame:YES];
+                        [markBottomTarget runAction:[CCSequence actions: hit, unsetSleep, nil]];
+                    }
+                    [self schedule:@selector(tryBlinking:)];
+                    //[markTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
+                    //[markTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
                 }
             }
         }
@@ -561,9 +589,13 @@ CGPoint location;
     [topSittingAnim release];
     topSittingAnim = nil;
     [bottomSleepAnim release];
-    bottomSittingAnim = nil;
+    bottomSleepAnim = nil;
     [topSleepAnim release];
-    topSittingAnim = nil;
+    topSleepAnim = nil;
+    [topHitAnim release];
+    topHitAnim = nil;
+    [bottomHitAnim release];
+    bottomHitAnim = nil;
     
     [scoreLabel release];
     scoreLabel = nil;

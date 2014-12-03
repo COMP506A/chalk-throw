@@ -166,6 +166,8 @@
 		71DE7E721A2B9481004DDCE6 /* tables.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E701A2B9481004DDCE6 /* tables.plist */; };
 		71DE7E731A2B9481004DDCE6 /* tables.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E711A2B9481004DDCE6 /* tables.png */; };
 		F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD6C1A2C0492006818EB /* chalk.png */; };
+		F3D2DD711A2F2CD0006818EB /* topHitAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD701A2F2CD0006818EB /* topHitAnim.plist */; };
+		F3D2DD731A2F371B006818EB /* bottomHitAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD721A2F371B006818EB /* bottomHitAnim.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -476,6 +478,8 @@
 		71DE7E701A2B9481004DDCE6 /* tables.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tables.plist; sourceTree = "<group>"; };
 		71DE7E711A2B9481004DDCE6 /* tables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tables.png; sourceTree = "<group>"; };
 		F3D2DD6C1A2C0492006818EB /* chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk.png; sourceTree = "<group>"; };
+		F3D2DD701A2F2CD0006818EB /* topHitAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = topHitAnim.plist; sourceTree = "<group>"; };
+		F3D2DD721A2F371B006818EB /* bottomHitAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bottomHitAnim.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -554,12 +558,14 @@
 		71BB9D3E1A2A3AB100123283 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F3D2DD701A2F2CD0006818EB /* topHitAnim.plist */,
 				1BC4D14B1A2EBD18003417B7 /* hardmode_click.jpg */,
 				1BC4D14C1A2EBD18003417B7 /* hardmode.jpg */,
 				1BC4D14D1A2EBD18003417B7 /* normalmode_click.jpg */,
 				1BC4D14E1A2EBD18003417B7 /* normalmode.jpg */,
 				7157DD3A1A2D9995000AE5F4 /* startscene.plist */,
 				7157DD3B1A2D9995000AE5F4 /* startscene.png */,
+				F3D2DD721A2F371B006818EB /* bottomHitAnim.plist */,
 				71C525FD1A2C581C006867DD /* sprites.plist */,
 				7157DD361A2D993B000AE5F4 /* background.plist */,
 				7157DD371A2D993B000AE5F4 /* background.png */,
@@ -1036,7 +1042,9 @@
 				71BB9D401A2A3AB100123283 /* Default.png in Resources */,
 				71BB9D4A1A2A3AB100123283 /* Icon-Small-50.png in Resources */,
 				7157DD3C1A2D9995000AE5F4 /* startscene.plist in Resources */,
+				F3D2DD731A2F371B006818EB /* bottomHitAnim.plist in Resources */,
 				718060831A2B009100F01EED /* bgm.jpg in Resources */,
+				F3D2DD711A2F2CD0006818EB /* topHitAnim.plist in Resources */,
 				71DE7E731A2B9481004DDCE6 /* tables.png in Resources */,
 				71C526021A2C59B2006867DD /* bottomSittingAnim.plist in Resources */,
 				7157DD381A2D993B000AE5F4 /* background.plist in Resources */,
