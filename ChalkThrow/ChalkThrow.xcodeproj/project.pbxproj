@@ -161,6 +161,9 @@
 		71C526041A2C5C4A006867DD /* topBlinkAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71C526031A2C5C4A006867DD /* topBlinkAnim.plist */; };
 		71DE7E721A2B9481004DDCE6 /* tables.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E701A2B9481004DDCE6 /* tables.plist */; };
 		71DE7E731A2B9481004DDCE6 /* tables.png in Resources */ = {isa = PBXBuildFile; fileRef = 71DE7E711A2B9481004DDCE6 /* tables.png */; };
+		F3A66F3F1A3079EC00EF6E51 /* hit_w.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F3E1A3079EC00EF6E51 /* hit_w.mp3 */; };
+		F3A66F411A3079F100EF6E51 /* throw.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F401A3079F100EF6E51 /* throw.mp3 */; };
+		F3A66F431A3079FF00EF6E51 /* hit_r.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F421A3079FF00EF6E51 /* hit_r.mp3 */; };
 		F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD6C1A2C0492006818EB /* chalk.png */; };
 		F3D2DD711A2F2CD0006818EB /* topHitCorrectAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD701A2F2CD0006818EB /* topHitCorrectAnim.plist */; };
 		F3D2DD731A2F371B006818EB /* bottomHitCorrectAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD721A2F371B006818EB /* bottomHitCorrectAnim.plist */; };
@@ -469,6 +472,9 @@
 		71C526031A2C5C4A006867DD /* topBlinkAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = topBlinkAnim.plist; sourceTree = "<group>"; };
 		71DE7E701A2B9481004DDCE6 /* tables.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tables.plist; sourceTree = "<group>"; };
 		71DE7E711A2B9481004DDCE6 /* tables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tables.png; sourceTree = "<group>"; };
+		F3A66F3E1A3079EC00EF6E51 /* hit_w.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_w.mp3; sourceTree = "<group>"; };
+		F3A66F401A3079F100EF6E51 /* throw.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = throw.mp3; sourceTree = "<group>"; };
+		F3A66F421A3079FF00EF6E51 /* hit_r.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_r.mp3; sourceTree = "<group>"; };
 		F3D2DD6C1A2C0492006818EB /* chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk.png; sourceTree = "<group>"; };
 		F3D2DD701A2F2CD0006818EB /* topHitCorrectAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = topHitCorrectAnim.plist; sourceTree = "<group>"; };
 		F3D2DD721A2F371B006818EB /* bottomHitCorrectAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bottomHitCorrectAnim.plist; sourceTree = "<group>"; };
@@ -550,6 +556,9 @@
 		71BB9D3E1A2A3AB100123283 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F3A66F421A3079FF00EF6E51 /* hit_r.mp3 */,
+				F3A66F401A3079F100EF6E51 /* throw.mp3 */,
+				F3A66F3E1A3079EC00EF6E51 /* hit_w.mp3 */,
 				71B6D6201A305E73000E9B0E /* backbutton_click.png */,
 				71B6D6211A305E73000E9B0E /* backbutton.png */,
 				71B6D6181A305132000E9B0E /* sprites.plist */,
@@ -1006,6 +1015,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A66F431A3079FF00EF6E51 /* hit_r.mp3 in Resources */,
 				1BC4D1501A2EBD18003417B7 /* hardmode.jpg in Resources */,
 				71B6D60D1A30481F000E9B0E /* topHitWrongAnim.plist in Resources */,
 				1BC4D14F1A2EBD18003417B7 /* hardmode_click.jpg in Resources */,
@@ -1027,6 +1037,7 @@
 				71BB9D4A1A2A3AB100123283 /* Icon-Small-50.png in Resources */,
 				F3D2DD731A2F371B006818EB /* bottomHitCorrectAnim.plist in Resources */,
 				F3D2DD711A2F2CD0006818EB /* topHitCorrectAnim.plist in Resources */,
+				F3A66F3F1A3079EC00EF6E51 /* hit_w.mp3 in Resources */,
 				71B6D61A1A305132000E9B0E /* sprites.plist in Resources */,
 				71DE7E731A2B9481004DDCE6 /* tables.png in Resources */,
 				71C526021A2C59B2006867DD /* bottomBlinkAnim.plist in Resources */,
@@ -1040,6 +1051,7 @@
 				717E82DF1A2C61BE00B40191 /* bottomSleepAnim.plist in Resources */,
 				71B6D60F1A304889000E9B0E /* bottomHitWrongAnim.plist in Resources */,
 				71B6D6071A303480000E9B0E /* bottomSittingAnim.plist in Resources */,
+				F3A66F411A3079F100EF6E51 /* throw.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,9 @@
 #import "AppDelegate.h"
 #import "StartLayer.h"
 
+// Need to add sound
+#import "SimpleAudioEngine.h"
+
 #pragma mark - GameLayer
 
 // GameLayer implementation
@@ -197,9 +200,18 @@
         CCMenu *gameMenu = [CCMenu menuWithItems:backItem, nil];
         gameMenu.position = CGPointZero;
         [self addChild:gameMenu z:20];
+        
+        [self loadSoundEffect];
 
     }
     return self;
+}
+
+// Load sound effect
+- (void) loadSoundEffect {
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"hit_r.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"hit_w.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"throw.mp3"];
 }
 
 - (void)backTapped:(id)sender {
@@ -240,6 +252,7 @@ CGPoint location;
     CCSprite *chalk = [CCSprite spriteWithFile:@"chalk.png"
                                           rect:CGRectMake(0, 0, 96, 48)];
     chalk.position = ccp(winSize.width/2, 24);
+    [[SimpleAudioEngine sharedEngine] playEffect:@"throw.mp3"];
     
     // Determine offset of location to chalk
     /*int offX = location.x - chalk.position.x;
@@ -390,10 +403,12 @@ CGPoint location;
                     //hit a target at the right time, score + 10
                     if (markTopTarget.userData == @"11" || markBottomTarget.userData == @"10") {
                         score = score + 10;
+                        [[SimpleAudioEngine sharedEngine] playEffect:@"hit_r.mp3"];
                     }
                     //hit a target at the wrong time, score - 5
                     else {
                         score = score - 5;
+                        [[SimpleAudioEngine sharedEngine] playEffect:@"hit_w.mp3"];
                     }
                     
                     NSString *scoreStr = [NSString stringWithFormat:@"Score: %i", score];
