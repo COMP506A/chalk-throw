@@ -48,7 +48,7 @@
 			background = [CCSprite spriteWithFile:@"Default.png"];
 			background.rotation = 90;
 		} else {
-			background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
+			background = [CCSprite spriteWithFile:@"Default_landscape.png"];
 		}
 		background.position = ccp(size.width/2, size.height/2);
 
@@ -62,6 +62,6 @@
 -(void) onEnter
 {
 	[super onEnter];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[StartLayer scene] ]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFadeTR transitionWithDuration:0.5 scene:[StartLayer scene]]];
 }
 @end

@@ -11,13 +11,14 @@
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
+#import "StartLayer.h"
 
-#pragma mark - HelloWorldLayer
+#pragma mark - GameLayer
 
-// HelloWorldLayer implementation
+// GameLayer implementation
 @implementation GameLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+// Helper class method that creates a Scene with the GameLayer as the only child.
 +(CCScene *) scene
 {
     // 'scene' is an autorelease object.
@@ -49,7 +50,7 @@
         NSString *tbPlist = @"tables.plist";
         
         
-        // Load background and foreground
+        // Load background
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:bgPlist];
         
         // Add background
@@ -139,20 +140,39 @@
         
         
         // load animations
-        bottomSittingAnim = [self animationFromPlist:@"bottomSittingAnim" delay:0.1];
-        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSittingAnim name:@"bottomSittingAnim"];
+        bottomBlinkAnim = [self animationFromPlist:@"bottomBlinkAnim" delay:0.1];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomBlinkAnim name:@"bottomBlinkAnim"];
+        topBlinkAnim = [self animationFromPlist:@"topBlinkAnim" delay:0.1];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:topBlinkAnim name:@"topBlinkAnim"];
+        
+        bottomHitCorrectAnim = [self animationFromPlist:@"bottomHitCorrectAnim" delay:0.5];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomHitCorrectAnim name:@"bottomHitCorrectAnim"];
+        topHitCorrectAnim = [self animationFromPlist:@"topHitCorrectAnim" delay:0.5];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:topHitCorrectAnim name:@"topHitCorrectAnim"];
+        
+        bottomHitWrongAnim = [self animationFromPlist:@"bottomHitWrongAnim" delay:0.5];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomHitWrongAnim name:@"bottomHitWrongAnim"];
+        topHitWrongAnim = [self animationFromPlist:@"topHitWrongAnim" delay:0.5];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:topHitWrongAnim name:@"topHitWrongAnim"];
+        
         topSittingAnim = [self animationFromPlist:@"topSittingAnim" delay:0.1];
         [[CCAnimationCache sharedAnimationCache] addAnimation:topSittingAnim name:@"topSittingAnim"];
-        bottomSleepAnim = [self animationFromPlist:@"bottomSleepAnim" delay:0.3];
-        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSleepAnim name:@"bottomSleepAnim"];
-        topSleepAnim = [self animationFromPlist:@"topSleepAnim" delay:0.3];
-        [[CCAnimationCache sharedAnimationCache] addAnimation:topSleepAnim name:@"topSleepAnim"];
-        bottomHitAnim = [self animationFromPlist:@"bottomHitAnim" delay:2.0];
-        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomHitAnim name:@"bottomHitAnim"];
-        topHitAnim = [self animationFromPlist:@"topHitAnim" delay:2.0];
-        [[CCAnimationCache sharedAnimationCache] addAnimation:topHitAnim name:@"topHitAnim"];
+        bottomSittingAnim = [self animationFromPlist:@"bottomSittingAnim" delay:0.1];
+        [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSittingAnim name:@"bottomSittingAnim"];
         
-        [self schedule:@selector(tryBlinking:) interval:0.5];
+        AppController *now = [[UIApplication sharedApplication] delegate];
+        if (now.gamemode == NORMAL){
+            bottomSleepAnim = [self animationFromPlist:@"bottomSleepAnim" delay:0.8];
+            [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSleepAnim name:@"bottomSleepAnim"];
+            topSleepAnim = [self animationFromPlist:@"topSleepAnim" delay:0.8];
+            [[CCAnimationCache sharedAnimationCache] addAnimation:topSleepAnim name:@"topSleepAnim"];
+        } else if (now.gamemode == HARD) {
+            bottomSleepAnim = [self animationFromPlist:@"bottomSleepAnim" delay:0.1];
+            [[CCAnimationCache sharedAnimationCache] addAnimation:bottomSleepAnim name:@"bottomSleepAnim"];
+            topSleepAnim = [self animationFromPlist:@"topSleepAnim" delay:0.1];
+            [[CCAnimationCache sharedAnimationCache] addAnimation:topSleepAnim name:@"topSleepAnim"];
+        }
+        [self schedule:@selector(tryBlinkingAndSleeping:) interval:0.5];
         
         // Load Chalk
         self.touchEnabled = true;
@@ -164,64 +184,41 @@
         scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana" fontSize:24];
         scoreLabel.color = ccBLACK;
         scoreLabel.position = CGPointMake(winSize.width - 60, 30);
+        
+        //initialize game attributes
+        totalSpawns = 0;
+        gameOver = false;
+        
         [self addChild:scoreLabel z:11];
         
-        //[self schedule:@selector(update:)];
-        
-        /*
-        float margin =10;
-        label = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana" fontSize:[self convertFontSize:14.0]];
-        label.anchorPoint = ccp(1, 0);
-        label.position = ccp(winSize.width - margin, margin);
-        [self addChild:label z:10];
-        
-        
-        [self schedule:@selector(tryPopMoles:) interval:0.5];
-         */
-        
+        CCMenuItem *backItem = [CCMenuItemImage itemFromNormalImage:@"backbutton.png" selectedImage:@"backbutton_click.png"
+                                                             target:self selector:@selector(backTapped:)];
+        backItem.position = [self convertPoint:ccp(10, -10)];
+        CCMenu *gameMenu = [CCMenu menuWithItems:backItem, nil];
+        gameMenu.position = CGPointZero;
+        [self addChild:gameMenu z:20];
+
     }
     return self;
+}
+
+- (void)backTapped:(id)sender {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[StartLayer scene]]];
 }
 
 
 - (CCAnimation *)animationFromPlist:(NSString *)animPlist delay:(float)delay {
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:animPlist ofType:@"plist"]; // 1
-    NSArray *animImages = [NSArray arrayWithContentsOfFile:plistPath]; // 2
-    NSMutableArray *animFrames = [NSMutableArray array]; // 3
-    for(NSString *animImage in animImages) { // 4
-        [animFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:animImage]]; // 5
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:animPlist ofType:@"plist"];
+    NSArray *animImages = [NSArray arrayWithContentsOfFile:plistPath];
+    NSMutableArray *animFrames = [NSMutableArray array];
+    for(NSString *animImage in animImages) {
+        [animFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:animImage]];
     }
-    return [CCAnimation animationWithFrames:animFrames delay:delay]; // 6
+    return [CCAnimation animationWithFrames:animFrames delay:delay];
     
 }
 
-
-/*-(void) registerWithTouchDispatcher
-{
-    [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:kCCMenuTouchPriority swallowsTouches:NO];
-}*/
-
-
-/*-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
-    for (CCSprite *mole in students) {
-        if (mole.userData == FALSE) continue;
-        if (CGRectContainsPoint(mole.boundingBox, touchLocation)) {
-            
-            mole.userData = FALSE;
-            score+=10;
-            
-            [mole stopAllActions];
-            CCAnimate *hit = [CCAnimate actionWithAnimation:hitAnim restoreOriginalFrame:NO];
-            CCMoveBy *moveDown = [CCMoveBy actionWithDuration:0.2 position:ccp(0, -mole.contentSize.height)];
-            CCEaseInOut *easeMoveDown = [CCEaseInOut actionWithAction:moveDown rate:3.0];
-            [mole runAction:[CCSequence actions:hit, easeMoveDown, nil]];
-        }
-    }
-    return TRUE;
-}*/
 
 - (void) spriteMoveFinished: (id)sender {
     CCSprite *sprite = (CCSprite *)sender;
@@ -389,28 +386,53 @@ CGPoint location;
             if (markTopTarget || markBottomTarget) {
                 if (CGRectIntersectsRect(chalkRect, targetRect)) {
                     [chalksToDelete addObject:chalk];
-                    //hit a target, score + 10
-                    score = score + 10;
+                    
+                    //hit a target at the right time, score + 10
+                    if (markTopTarget.userData == @"11" || markBottomTarget.userData == @"10") {
+                        score = score + 10;
+                    }
+                    //hit a target at the wrong time, score - 5
+                    else {
+                        score = score - 5;
+                    }
+                    
                     NSString *scoreStr = [NSString stringWithFormat:@"Score: %i", score];
                     scoreLabel.string = scoreStr;
-                    //Change the state
-                    [self unschedule:@selector(tryBlinking:)];
+
+                    // when the target is hit, run hit animations and reset it to 'sit' state
                     if(markTopTarget) {
-                        //[markTopTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"hit_s.png"]];
-                        CCAnimate *hit = [CCAnimate actionWithAnimation:topHitAnim restoreOriginalFrame:YES];
+                        [markTopTarget stopAllActions];
+                        
+                        CCAnimate *hit;
+                        if (markTopTarget.userData == @"11") {
+                            hit = [CCAnimate actionWithAnimation:topHitCorrectAnim restoreOriginalFrame:NO];
+                        } else {
+                            hit = [CCAnimate actionWithAnimation:topHitWrongAnim restoreOriginalFrame:NO];
+                        }
+                        
                         CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset
-                        //CCAnimate *blink = [CCAnimate actionWithAnimation:topSittingAnim restoreOriginalFrame:YES];
-                        [markTopTarget runAction:[CCSequence actions: hit, unsetSleep, nil]];
+                        
+                        CCAnimate *sit = [CCAnimate actionWithAnimation:topSittingAnim restoreOriginalFrame:NO];
+                        
+                        [markTopTarget runAction:[CCSequence actions: hit, unsetSleep, sit, nil]];
+                        
+                        
                     } else {
-                        //[markBottomTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"hit_l.png"]];
-                        CCAnimate *hit = [CCAnimate actionWithAnimation:bottomHitAnim restoreOriginalFrame:YES];
+                        [markBottomTarget stopAllActions];
+                        
+                        CCAnimate *hit;
+                        if (markBottomTarget.userData == @"10") {
+                            hit = [CCAnimate actionWithAnimation:bottomHitCorrectAnim restoreOriginalFrame:NO];
+                        } else {
+                            hit = [CCAnimate actionWithAnimation:bottomHitWrongAnim restoreOriginalFrame:NO];
+                        }
+                        
                         CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset
-                        //CCAnimate *blink = [CCAnimate actionWithAnimation:bottomSittingAnim restoreOriginalFrame:YES];
-                        [markBottomTarget runAction:[CCSequence actions: hit, unsetSleep, nil]];
+                        
+                        CCAnimate *sit = [CCAnimate actionWithAnimation:bottomSittingAnim restoreOriginalFrame:NO];
+                        
+                        [markBottomTarget runAction:[CCSequence actions: hit, unsetSleep, sit, nil]];
                     }
-                    [self schedule:@selector(tryBlinking:)];
-                    //[markTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
-                    //[markTarget setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
                 }
             }
         }
@@ -456,31 +478,33 @@ CGPoint location;
 }
 
 
-- (void) tryBlinking:(ccTime)dt {
-    /*
+- (void) tryBlinkingAndSleeping:(ccTime)dt {
+    
+    //when totalSpawns >= ENDNUMBER, the game is over
     if (gameOver) return;
     
-    [label setString:[NSString stringWithFormat:@"Score: %d", score]];
-    
-    if (totalSpawns >=50) {
+    if (totalSpawns >= ENDNUMBER) {
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        CCLabelTTF *goLabel = [CCLabelTTF labelWithString:@"Level Complete!" fontName:@"Verdana" fontSize:[self convertFontSize:48.0]];
-        goLabel.position = ccp(winSize.width/2, winSize.height/2);
+        CCLabelTTF *goLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Game Over!\nTotal score: %i",score] fontName:@"TrebuchetMS" fontSize:[self convertFontSize:48.0]];
+        goLabel.color = ccRED;
+        goLabel.position = ccp(winSize.width/2, winSize.height/2-20);
         goLabel.scale =0.1;
         [self addChild:goLabel z:10];
         [goLabel runAction:[CCScaleTo actionWithDuration:0.5 scale:1.0]];
-        
+        for (CCSprite *student in students) {
+            [student stopAllActions];
+        }
         gameOver =true;
         return;
+        
     }
-     */
     
     for (CCSprite *student in students) {
         if (arc4random() % 3 == 0) {
             if (student.numberOfRunningActions == 0) {
-                [self blinking:student];
+                [self blinkingAndSleeping:student];
             }
         }
     }
@@ -488,7 +512,7 @@ CGPoint location;
 }
 
 
-
+//set the state of the sprite of sleeping
 - (void)setSleep:(id)sender {
     CCSprite *student = (CCSprite *)sender;
     if (student.userData == @"00") {        //1st position: 0-sit, 1-sleep
@@ -499,9 +523,10 @@ CGPoint location;
     }
 }
 
+//unset the state of the sprite of sleeping
 - (void)unsetSleep:(id)sender {
     CCSprite *student = (CCSprite *)sender;
-    if (student.userData == @"10") {        //1st position: 0-sit to hit, 1-sleep
+    if (student.userData == @"10") {        //1st position: 0-sit, 1-sleep
         [student setUserData:@"00"];        //2nd position: 0-bottom, 1-top
     }
     if (student.userData == @"11") {
@@ -510,46 +535,28 @@ CGPoint location;
 }
  
 
-- (void) blinking:(CCSprite *)student {
+- (void) blinkingAndSleeping:(CCSprite *)student {
+    
+    totalSpawns++;
     
     if (student.userData == @"00") {
-        [student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
+        //[student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
         CCCallFunc *setSleep = [CCCallFuncN actionWithTarget:self selector:@selector(setSleep:)]; //set tappable
-        CCAnimate *blink = [CCAnimate actionWithAnimation:bottomSittingAnim restoreOriginalFrame:YES];
+        CCAnimate *blink = [CCAnimate actionWithAnimation:bottomBlinkAnim restoreOriginalFrame:YES];
         CCAnimate *sleep = [CCAnimate actionWithAnimation:bottomSleepAnim restoreOriginalFrame:YES];
         CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset tappable
 
         [student runAction:[CCSequence actions: blink, setSleep, sleep, unsetSleep, nil]];
     }
     if (student.userData == @"01") {
-        [student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_s.png"]];
+        //[student setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_s.png"]];
         CCCallFunc *setSleep = [CCCallFuncN actionWithTarget:self selector:@selector(setSleep:)]; //set tappable
-        CCAnimate *blink = [CCAnimate actionWithAnimation:topSittingAnim restoreOriginalFrame:YES];
+        CCAnimate *blink = [CCAnimate actionWithAnimation:topBlinkAnim restoreOriginalFrame:YES];
         CCAnimate *sleep = [CCAnimate actionWithAnimation:topSleepAnim restoreOriginalFrame:YES];
         CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset tappable
         
         [student runAction:[CCSequence actions: blink, setSleep, sleep, unsetSleep, nil]];
     }
-    
-    
-    /*
-    if (totalSpawns > 50) return;
-    totalSpawns++;
-    
-    
-    [mole setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"normal_l.png"]];
-    
-    // Pop mole
-    CCMoveBy *moveUp = [CCMoveBy actionWithDuration:0.2 position:ccp(0, mole.contentSize.height)];
-    CCCallFunc *setTappable = [CCCallFuncN actionWithTarget:self selector:@selector(setTappable:)]; //set tappable
-    CCEaseInOut *easeMoveUp = [CCEaseInOut actionWithAction:moveUp rate:3.0];
-    CCAnimate *laugh = [CCAnimate actionWithAnimation:laughAnim restoreOriginalFrame:YES];
-    
-    CCCallFunc *unsetTappable = [CCCallFuncN actionWithTarget:self selector:@selector(unsetTappable:)]; //unset tappable
-    CCAction *easeMoveDown = [easeMoveUp reverse];
-    
-    [mole runAction:[CCSequence actions:easeMoveUp, setTappable, laugh, unsetTappable, easeMoveDown, nil]];
-    */
 }
 
 - (CGPoint)convertPoint:(CGPoint)point {
@@ -578,28 +585,30 @@ CGPoint location;
     
     // don't forget to call "super dealloc"
     [super dealloc];
+    
     [students release];
     students = nil;
     [_chalks release];
     _chalks = nil;
     
-    
-    [bottomSittingAnim release];
-    bottomSittingAnim = nil;
-    [topSittingAnim release];
-    topSittingAnim = nil;
+    /*
+    [bottomBlinkAnim release];
+    bottomBlinkAnim = nil;
+    [topBlinkAnim release];
+    topBlinkAnim = nil;
     [bottomSleepAnim release];
     bottomSleepAnim = nil;
     [topSleepAnim release];
     topSleepAnim = nil;
-    [topHitAnim release];
-    topHitAnim = nil;
-    [bottomHitAnim release];
-    bottomHitAnim = nil;
-    
-    [scoreLabel release];
-    scoreLabel = nil;
-    
+    [topHitWrongAnim release];
+    topHitWrongAnim = nil;
+    [topHitCorrectAnim release];
+    topHitCorrectAnim = nil;
+    [bottomHitWrongAnim release];
+    bottomHitWrongAnim = nil;
+    [bottomHitCorrectAnim release];
+    bottomHitCorrectAnim = nil;
+     */
 }
 
 #pragma mark GameKit delegate

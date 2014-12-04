@@ -64,16 +64,7 @@
         CCMenu *hardModeMenu = [CCMenu menuWithItems:hardModeMenuItem, nil];
         hardModeMenu.position = CGPointZero;
         [self addChild:hardModeMenu];
-        
-/*
-        CCSprite *normalMode = [CCSprite spriteWithSpriteFrameName:@"normalmode.jpg"];
-        normalMode.position = [self convertPoint:ccp(355, 195)];
-        [normalModeNode addChild:normalMode];
-        CCSprite *hardMode = [CCSprite spriteWithSpriteFrameName:@"hardmode.jpg"];
-        hardMode.position = [self convertPoint:ccp(355, 85)];
-        [hardModeNode addChild:hardMode];
-*/
-        
+                
     }
     
     return self;
@@ -88,16 +79,25 @@
 }
 
 - (void)normalModeTapped:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] ]];
+    AppController *myAppDelegate = [[UIApplication sharedApplication] delegate];
+    myAppDelegate.gamemode = NORMAL;
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene]]];
 }
 
 - (void)hardModeTapped:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] ]];
+    AppController *myAppDelegate = [[UIApplication sharedApplication] delegate];
+    myAppDelegate.gamemode = HARD;
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene]]];
 }
 
 -(void) onEnter
 {
     [super onEnter];
-    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene] ]];
+}
+
+-(void) dealloc
+{
+    //[CCAnimationCache purgeSharedAnimationCache];
+    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
 }
 @end

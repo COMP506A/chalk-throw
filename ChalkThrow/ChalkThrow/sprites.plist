@@ -4,36 +4,62 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>hit_l.png</key>
+            <key>hit_l_correct.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,312},{157,284}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{157,284}}</string>
-                <key>sourceSize</key>
-                <string>{157,284}</string>
-            </dict>
-            <key>hit_s.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{882,2},{115,208}}</string>
+                <string>{{2,2},{180,325}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{115,208}}</string>
+                <string>{{0,0},{180,325}}</string>
                 <key>sourceSize</key>
-                <string>{115,208}</string>
+                <string>{180,325}</string>
+            </dict>
+            <key>hit_l_wrong.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,329},{180,325}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{180,325}}</string>
+                <key>sourceSize</key>
+                <string>{180,325}</string>
+            </dict>
+            <key>hit_s_correct.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{744,280},{120,216}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,216}}</string>
+                <key>sourceSize</key>
+                <string>{120,216}</string>
+            </dict>
+            <key>hit_s_wrong.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{862,2},{120,216}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,216}}</string>
+                <key>sourceSize</key>
+                <string>{120,216}</string>
             </dict>
             <key>normal_l.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{681,2},{199,276}}</string>
+                <string>{{661,2},{199,276}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,11 +72,11 @@
             <key>normal_l_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{479,2},{200,276}}</string>
+                <string>{{466,310},{200,276}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{200,276}}</string>
                 <key>sourceSize</key>
@@ -59,7 +85,7 @@
             <key>normal_s.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{495,280},{135,188}}</string>
+                <string>{{329,312},{135,188}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,11 +98,11 @@
             <key>normal_s_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{632,280},{135,186}}</string>
+                <string>{{984,2},{135,186}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{135,186}}</string>
                 <key>sourceSize</key>
@@ -85,7 +111,7 @@
             <key>sleep_l.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{241,2},{236,306}}</string>
+                <string>{{423,2},{236,306}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +124,7 @@
             <key>sleep_l_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{237,308}}</string>
+                <string>{{184,2},{237,308}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +137,7 @@
             <key>sleep_s.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{288,310},{159,205}}</string>
+                <string>{{866,348},{159,205}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,11 +150,11 @@
             <key>sleep_s_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{769,280},{160,207}}</string>
+                <string>{{984,139},{160,207}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{160,207}}</string>
                 <key>sourceSize</key>
@@ -142,9 +168,9 @@
             <key>realTextureFileName</key>
             <string>sprites.png</string>
             <key>size</key>
-            <string>{999,471}</string>
+            <string>{1172,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:61a1d346896cd0c8d2a3ef13ed3123c6:cb4f7dbe3704680145d0507f96419eb4:db71e206b3c010bfb176561963c50b15$</string>
+            <string>$TexturePacker:SmartUpdate:d9a59104e143b5e7e96be863918473f1:f86a095a6cac89064017285c126e4753:db71e206b3c010bfb176561963c50b15$</string>
             <key>textureFileName</key>
             <string>sprites.png</string>
         </dict>
