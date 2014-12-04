@@ -356,7 +356,11 @@ CGPoint location;
     //[self delete:chalk];
 }
 
+bool scoreMark = false;
 - (void)update:(ccTime)dt {
+    if(totalSpawns>=ENDNUMBER)
+        return;
+    
     
     NSMutableArray *chalksToDelete = [[NSMutableArray alloc] init];
     for (CCSprite *chalk in _chalks) {
@@ -399,6 +403,11 @@ CGPoint location;
                 }
             }
             
+            if (markTopTarget.userData == @"21" || markBottomTarget.userData == @"20") {
+                break;
+                //return;
+            }
+            
             if (markTopTarget || markBottomTarget) {
                 if (CGRectIntersectsRect(chalkRect, targetRect)) {
                     [chalksToDelete addObject:chalk];
@@ -428,11 +437,13 @@ CGPoint location;
                             hit = [CCAnimate actionWithAnimation:topHitWrongAnim restoreOriginalFrame:NO];
                         }
                         
-                        CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset
+                        CCCallFunc *setHit = [CCCallFuncN actionWithTarget:self selector:@selector(setHit:)];
                         
                         CCAnimate *sit = [CCAnimate actionWithAnimation:topSittingAnim restoreOriginalFrame:NO];
                         
-                        [markTopTarget runAction:[CCSequence actions: hit, unsetSleep, sit, nil]];
+                        CCCallFunc *unsetHit = [CCCallFuncN actionWithTarget:self selector:@selector(unsetHit:)];
+                        
+                        [markTopTarget runAction:[CCSequence actions: setHit, hit, sit, unsetHit, nil]];
                         
                         
                     } else {
@@ -445,11 +456,12 @@ CGPoint location;
                             hit = [CCAnimate actionWithAnimation:bottomHitWrongAnim restoreOriginalFrame:NO];
                         }
                         
-                        CCCallFunc *unsetSleep = [CCCallFuncN actionWithTarget:self selector:@selector(unsetSleep:)]; //unset
+                        CCCallFunc *setHit = [CCCallFuncN actionWithTarget:self selector:@selector(setHit:)];
                         
                         CCAnimate *sit = [CCAnimate actionWithAnimation:bottomSittingAnim restoreOriginalFrame:NO];
                         
-                        [markBottomTarget runAction:[CCSequence actions: hit, unsetSleep, sit, nil]];
+                        CCCallFunc *unsetHit = [CCCallFuncN actionWithTarget:self selector:@selector(unsetHit:)];
+                        [markBottomTarget runAction:[CCSequence actions: setHit,hit, sit, unsetHit, nil]];
                     }
                 }
             }
@@ -548,6 +560,28 @@ CGPoint location;
         [student setUserData:@"00"];        //2nd position: 0-bottom, 1-top
     }
     if (student.userData == @"11") {
+        [student setUserData:@"01"];
+    }
+}
+
+//set the state of the sprite of hit
+- (void)setHit:(id)sender {
+    CCSprite *student = (CCSprite *)sender;
+    if (student.userData == @"00" || student.userData == @"10") {   //1st position: 0-sit, 1-sleep, 2-hit
+        [student setUserData:@"20"];                                //2nd position: 0-bottom, 1-top
+    }
+    if (student.userData == @"01" || student.userData == @"11") {
+        [student setUserData:@"21"];
+    }
+}
+
+//unset the state of the sprite of hit
+- (void)unsetHit:(id)sender {
+    CCSprite *student = (CCSprite *)sender;
+    if (student.userData == @"20") {        //1st position: 0-sit, 1-sleep, 2-hit
+        [student setUserData:@"00"];        //2nd position: 0-bottom, 1-top
+    }
+    if (student.userData == @"21") {
         [student setUserData:@"01"];
     }
 }

@@ -11,7 +11,7 @@
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 
-#define ENDNUMBER 30
+#define ENDNUMBER 10
 // HelloWorldLayer
 @interface GameLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
