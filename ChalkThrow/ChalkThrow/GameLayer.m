@@ -186,7 +186,7 @@
         score = 0;
         scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana" fontSize:24];
         scoreLabel.color = ccBLACK;
-        scoreLabel.position = CGPointMake(winSize.width - 60, 30);
+        scoreLabel.position = CGPointMake(winSize.width - 100, 30);
         
         //initialize game attributes
         totalSpawns = 0;
@@ -242,6 +242,9 @@
 
 CGPoint location;
 - (void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    //If game over, everything should stop
+    if(gameOver)
+        return;
     // Choose one of the touches to work with
     UITouch *touch = [touches anyObject];
     location = [touch locationInView:[touch view]];
