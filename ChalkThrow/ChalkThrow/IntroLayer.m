@@ -12,6 +12,9 @@
 #import "StartLayer.h"
 #import "GameLayer.h"
 
+// Need to add sound
+#import "SimpleAudioEngine.h"
+
 
 #pragma mark - IntroLayer
 
@@ -38,7 +41,10 @@
 -(id) init
 {
 	if( (self=[super init])) {
-
+        // Load sound effect 
+        [self loadSoundEffect];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"flash.mp3"];
+        
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
 
@@ -57,6 +63,11 @@
 	}
 	
 	return self;
+}
+
+// Load sound effect
+- (void) loadSoundEffect {
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"flash.mp3"];
 }
 
 -(void) onEnter

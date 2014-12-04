@@ -164,6 +164,9 @@
 		F3A66F3F1A3079EC00EF6E51 /* hit_w.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F3E1A3079EC00EF6E51 /* hit_w.mp3 */; };
 		F3A66F411A3079F100EF6E51 /* throw.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F401A3079F100EF6E51 /* throw.mp3 */; };
 		F3A66F431A3079FF00EF6E51 /* hit_r.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F421A3079FF00EF6E51 /* hit_r.mp3 */; };
+		F3A66F451A308DEF00EF6E51 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F441A308DEF00EF6E51 /* click.mp3 */; };
+		F3A66F471A308FB300EF6E51 /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F461A308FB300EF6E51 /* bgm.mp3 */; };
+		F3A66F491A3091D100EF6E51 /* flash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3A66F481A3091D100EF6E51 /* flash.mp3 */; };
 		F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD6C1A2C0492006818EB /* chalk.png */; };
 		F3D2DD711A2F2CD0006818EB /* topHitCorrectAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD701A2F2CD0006818EB /* topHitCorrectAnim.plist */; };
 		F3D2DD731A2F371B006818EB /* bottomHitCorrectAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D2DD721A2F371B006818EB /* bottomHitCorrectAnim.plist */; };
@@ -475,6 +478,9 @@
 		F3A66F3E1A3079EC00EF6E51 /* hit_w.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_w.mp3; sourceTree = "<group>"; };
 		F3A66F401A3079F100EF6E51 /* throw.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = throw.mp3; sourceTree = "<group>"; };
 		F3A66F421A3079FF00EF6E51 /* hit_r.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_r.mp3; sourceTree = "<group>"; };
+		F3A66F441A308DEF00EF6E51 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		F3A66F461A308FB300EF6E51 /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
+		F3A66F481A3091D100EF6E51 /* flash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flash.mp3; sourceTree = "<group>"; };
 		F3D2DD6C1A2C0492006818EB /* chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chalk.png; sourceTree = "<group>"; };
 		F3D2DD701A2F2CD0006818EB /* topHitCorrectAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = topHitCorrectAnim.plist; sourceTree = "<group>"; };
 		F3D2DD721A2F371B006818EB /* bottomHitCorrectAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bottomHitCorrectAnim.plist; sourceTree = "<group>"; };
@@ -556,6 +562,9 @@
 		71BB9D3E1A2A3AB100123283 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F3A66F481A3091D100EF6E51 /* flash.mp3 */,
+				F3A66F461A308FB300EF6E51 /* bgm.mp3 */,
+				F3A66F441A308DEF00EF6E51 /* click.mp3 */,
 				F3A66F421A3079FF00EF6E51 /* hit_r.mp3 */,
 				F3A66F401A3079F100EF6E51 /* throw.mp3 */,
 				F3A66F3E1A3079EC00EF6E51 /* hit_w.mp3 */,
@@ -1028,11 +1037,13 @@
 				71B6D61B1A305132000E9B0E /* sprites.png in Resources */,
 				1BC4D1511A2EBD18003417B7 /* normalmode_click.jpg in Resources */,
 				1BC4D1521A2EBD18003417B7 /* normalmode.jpg in Resources */,
+				F3A66F491A3091D100EF6E51 /* flash.mp3 in Resources */,
 				F3D2DD6D1A2C0492006818EB /* chalk.png in Resources */,
 				71BB9EAE1A2A3AB300123283 /* ChangeLog in Resources */,
 				71C526041A2C5C4A006867DD /* topBlinkAnim.plist in Resources */,
 				71BB9D4C1A2A3AB100123283 /* Icon-Small.png in Resources */,
 				71B6D6051A30338E000E9B0E /* topSittingAnim.plist in Resources */,
+				F3A66F471A308FB300EF6E51 /* bgm.mp3 in Resources */,
 				71BB9D481A2A3AB100123283 /* Icon-72.png in Resources */,
 				71BB9D4A1A2A3AB100123283 /* Icon-Small-50.png in Resources */,
 				F3D2DD731A2F371B006818EB /* bottomHitCorrectAnim.plist in Resources */,
@@ -1044,6 +1055,7 @@
 				71B6D6021A301B3A000E9B0E /* startscene.plist in Resources */,
 				71B6D6221A305E73000E9B0E /* backbutton_click.png in Resources */,
 				7157DD381A2D993B000AE5F4 /* background.plist in Resources */,
+				F3A66F451A308DEF00EF6E51 /* click.mp3 in Resources */,
 				71BB9D551A2A3AB100123283 /* iTunesArtwork in Resources */,
 				71BB9D4E1A2A3AB100123283 /* Icon-Small@2x.png in Resources */,
 				71BB9D521A2A3AB100123283 /* Icon@2x.png in Resources */,

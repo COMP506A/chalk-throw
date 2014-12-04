@@ -10,6 +10,9 @@
 #import "GameLayer.h"
 #import "AppDelegate.h"
 
+// Need to add sound
+#import "SimpleAudioEngine.h"
+
 @implementation StartLayer
 
 // Helper class method that creates a Scene with the GameLayer as the only child.
@@ -64,10 +67,24 @@
         CCMenu *hardModeMenu = [CCMenu menuWithItems:hardModeMenuItem, nil];
         hardModeMenu.position = CGPointZero;
         [self addChild:hardModeMenu];
+        
+        [self loadBgm];
+        [self loadSoundEffect];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"bgm.mp3"];
                 
     }
     
     return self;
+}
+
+// Load background music
+- (void) loadBgm {
+    [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"bgm.mp3"];
+}
+
+// Load sound effect
+- (void) loadSoundEffect {
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"click.mp3"];
 }
 
 - (CGPoint)convertPoint:(CGPoint)point {
@@ -81,12 +98,16 @@
 - (void)normalModeTapped:(id)sender {
     AppController *myAppDelegate = [[UIApplication sharedApplication] delegate];
     myAppDelegate.gamemode = NORMAL;
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene]]];
 }
 
 - (void)hardModeTapped:(id)sender {
     AppController *myAppDelegate = [[UIApplication sharedApplication] delegate];
     myAppDelegate.gamemode = HARD;
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameLayer scene]]];
 }
 
