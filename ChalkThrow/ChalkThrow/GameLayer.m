@@ -258,7 +258,7 @@ CGPoint location;
     [[SimpleAudioEngine sharedEngine] playEffect:@"throw.mp3"];
     
     // Determine offset of location to chalk
-    /*int offX = location.x - chalk.position.x;
+    int offX = location.x - chalk.position.x;
     int offY = location.y - chalk.position.y;
     
     // Ok to add now - we've double checked position
@@ -306,8 +306,8 @@ CGPoint location;
                            [CCScaleBy actionWithDuration:realMoveDuration scale:realScale],
                            [CCRotateBy actionWithDuration:realMoveDuration angle:720],
                            [CCEaseOut actionWithAction:moveTo rate:0.8],
-                           nil]];*/
-    if (location.y < 500) {
+                           nil]];
+    /*if (location.y < 500) {
         int offX = location.x - chalk.position.x;
         int offY = location.y - chalk.position.y;
         
@@ -351,7 +351,7 @@ CGPoint location;
         bezier.endPosition = ccp(location.x, location.y); // 结束位置
         CCBezierTo *actionMove = [CCBezierTo actionWithDuration:1 bezier:bezier];
         [chalk runAction:actionMove];
-    }
+    }*/
     
     //[self delete:chalk];
 }
